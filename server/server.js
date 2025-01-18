@@ -1,5 +1,7 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
+const usersRoutes = require('./routes/users');
 const adminRouters = require('./routes/adminRoutes');
 
 require('dotenv').config();
@@ -13,8 +15,17 @@ app.use((req , res , next) => {
     next();
 });
 
+app.use('/users' , usersRoutes);
 app.use('/admin' , adminRouters);
+//connect to db
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
+    app.listen(process.env.PORT , () => {
+        console.log('db connected and listening');
+        
+    });
 
-app.listen( process.env.PORT,() => {
-    console.log('app is listening ')
+})
+.catch(error => {
+    console.log(error)
 })
