@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require("cookie-parser");
+
 
 const usersRoutes = require('./routes/users');
 const adminRouters = require('./routes/adminRoutes');
@@ -14,7 +16,7 @@ app.use((req , res , next) => {
     console.log(req.method , req.path);
     next();
 });
-
+app.use(cookieParser()); 
 app.use('/users' , usersRoutes);
 app.use('/admin' , adminRouters);
 //connect to db

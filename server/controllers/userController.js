@@ -37,7 +37,7 @@ try {
       await newUser.save();
 
 
-      const token = createSecretToken(newUser._id);
+      const token = createSecretToken(newUser._id , newUser.role);
 
       return res.status(200).json({
         message: 'user created succesfuly',
@@ -79,7 +79,7 @@ const login = async (req , res , next) =>{
           return res.status(401).json({ message: "Incorrect email or passworddd" });
         }
     
-        const token = createSecretToken(user._id);
+        const token = createSecretToken(user._id , user.role);
         res.cookie("token", token, {
           withCredentials: true,
           httpOnly: true,
@@ -97,6 +97,10 @@ const login = async (req , res , next) =>{
 }
 
 
+const logout = (req, res) => {
+  res.cookie("token", "", { maxAge: 1 }); 
+  res.status(200).json({ message: "User logged out successfully" });
+};
 
 
 
@@ -105,5 +109,6 @@ const login = async (req , res , next) =>{
 
 module.exports = {
     sginup, 
-    login
+    login,
+    logout
 }
