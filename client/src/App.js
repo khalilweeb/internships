@@ -1,5 +1,6 @@
 import { Routes , Route} from "react-router-dom";
 import Sginup from "./pages/auth/Sginup";
+import Login from "./pages/auth/login";
 
 
 
@@ -9,6 +10,7 @@ function App() {
    
       <Routes>
             <Route path='/sginup' element = {<Sginup/>}/>
+            <Route path='/login' element = {<Login/>}/>
       </Routes> 
        
    
