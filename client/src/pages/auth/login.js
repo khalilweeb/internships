@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import styles from './auth.module.css'; // Make sure this CSS is already included
+import { useNavigate } from 'react-router-dom'; 
+import styles from './auth.module.css'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); 
 
-  // Handle input changes
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'email') {
@@ -17,11 +19,10 @@ const Login = () => {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset previous errors
+ 
     setError('');
     setLoading(true);
 
@@ -37,6 +38,7 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
@@ -46,12 +48,16 @@ const Login = () => {
         throw new Error(data.message || 'Login failed');
       }
 
-      // Handle successful login (store token, redirect, etc.)
-      console.log('Login success:', data);
-      // For example, you could store the token in localStorage
+      // Store user details in localStorage
+      localStorage.setItem('user', JSON.stringify(data.user));
       localStorage.setItem('authToken', data.token);
-      // Redirect to another page, like dashboard
-      // history.push('/dashboard');
+
+      // Redirect based on role
+      if (data.user.role === 'admin') {
+        navigate('/admin'); // Redirect admin to the dashboard
+      } else {
+        navigate('/profile'); // Redirect students & framers to profile page
+      }
       
     } catch (error) {
       setError(error.message || 'Something went wrong');
@@ -73,6 +79,7 @@ const Login = () => {
           placeholder="Enter your email"
           value={email}
           onChange={handleInputChange}
+          required
         />
       </div>
 
@@ -84,6 +91,7 @@ const Login = () => {
           placeholder="Enter your password"
           value={password}
           onChange={handleInputChange}
+          required
         />
       </div>
 
@@ -92,6 +100,11 @@ const Login = () => {
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </div>
+
+      {/* Add "Sign up" link below the login button */}
+      <p className={styles.switch}>
+        Don't have an account? <span onClick={() => navigate('/signup')} className={styles.link}>Sign Up</span>
+      </p>
     </form>
   );
 };

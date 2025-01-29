@@ -1,0 +1,74 @@
+.profileContainer {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .profileHeader h1 {
+    font-size: 2.5rem;
+    color: #23486A; /* Primary color */
+  }
+  
+  .profileHeader p {
+    font-size: 1.2rem;
+    color: #EFB036; /* Secondary color */
+  }
+  
+  .profileDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .detailSection {
+    background-color: #F5F7FA; /* Light gray background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detailSection h2 {
+    font-size: 1.5rem;
+    color: #23486A; /* Primary color */
+    margin-bottom: 1rem;
+  }
+  
+  .detailSection p {
+    font-size: 1rem;
+    color: #333333; /* Dark gray text */
+    margin: 0.5rem 0;
+  }
+  
+  .skillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .skill {
+    background-color: #4CAF50; /* Student accent color */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .error {
+    color: #F44336; /* Admin accent color */
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #23486A; /* Primary color */
+  }

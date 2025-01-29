@@ -139,12 +139,12 @@
     }
 }
 
-.loginLink {
+.loginLink , .switch {
     text-align: center;
     margin-top: 10px;
   }
   
-  .loginLink span {
+  .loginLink span, .link {
     color: #007bff;
     cursor: pointer;
     text-decoration: underline;
