@@ -16,7 +16,7 @@ const commentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId, 
       ref: "users", 
       required: true 
-    }, // owner of the comment
+    },
     replies: [
       {
         text: { 

@@ -5,17 +5,16 @@ import styles from './styles/Navbar.module.css';
 const Navbar = () => {
   const navigate = useNavigate();
 
-  // Get user data from localStorage
   const storedUser = JSON.parse(localStorage.getItem("user"));
-  const userRole = storedUser?.role; // Get the user's role
+  const userRole = storedUser?.role; 
 
-  // Logout logic
+
   const handleLogout = () => {
-    // Remove user data from localStorage
+    
     localStorage.removeItem("user");
     localStorage.removeItem("authToken");
 
-    // Redirect to login page
+   
     navigate("/login");
   };
 
@@ -28,7 +27,7 @@ const Navbar = () => {
           <Link to="/profile">Profile</Link>
         </li>
 
-        {/* Role-Specific Links */}
+      
         {userRole === "student" && (
           <>
             <li>
@@ -71,7 +70,6 @@ const Navbar = () => {
           </>
         )}
 
-        {/* Logout Button (Common for All Roles) */}
         <li className={styles.logout} onClick={handleLogout}>
           Logout
         </li>

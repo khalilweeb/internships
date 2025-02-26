@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const usersRoutes = require('./routes/users');
 const adminRouters = require('./routes/adminRoutes');
+const projectRoutes = require('./routes/projectRoutes')
 
 require('dotenv').config();
 
@@ -24,6 +25,7 @@ app.use((req , res , next) => {
 app.use(cookieParser()); 
 app.use('/users' , usersRoutes);
 app.use('/admin' , adminRouters);
+app.use('/projects' , projectRoutes);
 //connect to db
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {

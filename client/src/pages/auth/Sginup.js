@@ -37,11 +37,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Clear previous error
     setError('');
     setLoading(true);
 
-    // Check if password and repeat password match
     if (password !== repeatPassword) {
       setError('Passwords do not match.');
       setLoading(false);
